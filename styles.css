@@ -1,3 +1,4 @@
+/* Performance: Use CSS custom properties for better performance */
 :root {
     --gold: #D4A853;
     --gold-light: #E8C97A;
@@ -8,6 +9,7 @@
     --white-muted: rgba(245, 245, 245, 0.6);
 }
 
+/* Performance: Reset and box-sizing */
 * {
     margin: 0;
     padding: 0;
@@ -24,6 +26,8 @@ body {
     color: var(--white);
     min-height: 100vh;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Splash Screen */
@@ -145,6 +149,7 @@ body::before {
     box-shadow: 0 4px 20px rgba(212, 168, 83, 0.3);
     overflow: hidden;
     z-index: 10;
+    will-change: transform;
 }
 
 .audio-toggle::before {
@@ -429,6 +434,8 @@ body::before {
     height: 100%;
     object-fit: cover;
     animation: slow-zoom 8s ease-in-out infinite;
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 @keyframes slow-zoom {

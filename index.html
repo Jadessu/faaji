@@ -3,11 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAAJI - Every Friday</title>
+
+    <!-- Primary Meta Tags -->
+    <title>FAAJI - Every Friday Night at VLive Chicago</title>
+    <meta name="title" content="FAAJI - Every Friday Night at VLive Chicago">
+    <meta name="description" content="Join us every Friday night at VLive Chicago for FAAJI - an unforgettable night of music, vibes, and celebration. Get your tickets now!">
+    <meta name="keywords" content="FAAJI, Friday night, VLive Chicago, nightlife, event, party, music">
+    <meta name="theme-color" content="#D4A853">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faaji.com/">
+    <meta property="og:title" content="FAAJI - Every Friday Night at VLive Chicago">
+    <meta property="og:description" content="Join us every Friday night at VLive Chicago for FAAJI - an unforgettable night of music, vibes, and celebration. Get your tickets now!">
+    <meta property="og:image" content="https://faaji.com/faajiFlyer.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://faaji.com/">
+    <meta property="twitter:title" content="FAAJI - Every Friday Night at VLive Chicago">
+    <meta property="twitter:description" content="Join us every Friday night at VLive Chicago for FAAJI - an unforgettable night of music, vibes, and celebration. Get your tickets now!">
+    <meta property="twitter:image" content="https://faaji.com/faajiFlyer.png">
+
+    <!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+    <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts with display=swap for performance -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="faajiFlyer.png" as="image">
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "FAAJI",
+        "description": "Every Friday night at VLive Chicago - an unforgettable night of music, vibes, and celebration",
+        "eventSchedule": {
+            "@type": "Schedule",
+            "byDay": "Friday",
+            "repeatFrequency": "P1W"
+        },
+        "startDate": "2025-01-24T22:00:00-06:00",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+            "@type": "Place",
+            "name": "VLive Chicago",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "2501 S Kedzie Ave",
+                "addressLocality": "Chicago",
+                "addressRegion": "IL",
+                "postalCode": "60623",
+                "addressCountry": "US"
+            }
+        },
+        "image": "https://faaji.com/faajiFlyer.png",
+        "organizer": {
+            "@type": "Organization",
+            "name": "FAAJI",
+            "url": "https://faaji.com"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Loading Splash Screen -->
@@ -24,8 +98,8 @@
 
     <div class="ambient-glow"></div>
 
-    <!-- Audio element (hidden) -->
-    <audio id="backgroundMusic" loop autoplay>
+    <!-- Audio element (hidden) - preload none for performance -->
+    <audio id="backgroundMusic" loop preload="none">
         <source src="audio.mp3" type="audio/mpeg">
     </audio>
 
@@ -68,7 +142,13 @@
 
             <div class="hero-flyer">
                 <div class="flyer-frame">
-                    <img src="faajiFlyer.png" alt="Faaji Event Flyer" class="flyer-image">
+                    <img src="faajiFlyer.png"
+                         alt="FAAJI Event Flyer - Every Friday Night at VLive Chicago"
+                         class="flyer-image"
+                         loading="eager"
+                         decoding="async"
+                         width="380"
+                         height="475">
 
                     <!-- Audio Player Overlay -->
                     <button class="audio-toggle" id="audioToggle" aria-label="Toggle music">
@@ -119,6 +199,7 @@
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <!-- Deferred script for better performance -->
+    <script src="script.js" defer></script>
 </body>
 </html>
