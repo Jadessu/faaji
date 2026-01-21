@@ -51,29 +51,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2600);
 
     // Try on any user interaction if autoplay failed
-    document.addEventListener('click', function startOnInteraction() {
+    const startOnInteraction = () => {
         if (!isPlaying) {
             tryAutoplay();
-            document.removeEventListener('click', startOnInteraction);
         }
-    }, { once: true });
+    };
 
-    // Audio toggle button handler
-    audioToggle.addEventListener('click', () => {
+    document.addEventListener('click', startOnInteraction, { once: true });
+    document.addEventListener('touchstart', startOnInteraction, { once: true });
+
+    // Audio toggle button handler - works on both click and touch
+    const toggleAudio = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
         if (isPlaying) {
             backgroundMusic.pause();
             audioWaves.classList.add('hidden');
             audioMutedIcon.classList.remove('hidden');
             isPlaying = false;
         } else {
-            backgroundMusic.play().catch(error => {
-                console.log('Audio playback failed:', error);
-            });
-            audioWaves.classList.remove('hidden');
-            audioMutedIcon.classList.add('hidden');
-            isPlaying = true;
+            backgroundMusic.play()
+                .then(() => {
+                    audioWaves.classList.remove('hidden');
+                    audioMutedIcon.classList.add('hidden');
+                    isPlaying = true;
+                })
+                .catch(error => {
+                    console.log('Audio playback failed:', error);
+                    audioWaves.classList.add('hidden');
+                    audioMutedIcon.classList.remove('hidden');
+                    isPlaying = false;
+                });
         }
-    });
+    };
+
+    audioToggle.addEventListener('click', toggleAudio);
+    audioToggle.addEventListener('touchend', toggleAudio);
 
     // Countdown Timer Functions
     function getNextFriday() {
