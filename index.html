@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAAJI - Every Friday</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Splash Screen -->
+    <div class="splash-screen">
+        <div class="sound-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <div class="splash-text">FAAJI</div>
+    </div>
+
+    <div class="ambient-glow"></div>
+
+    <!-- Audio element (hidden) -->
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <main>
+        <section class="hero">
+            <div class="hero-info">
+                <span class="every-friday">Every <span class="friday-white">Friday</span> Night</span>
+                <h1 class="event-title">FAAJI</h1>
+                
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <span class="countdown-divider">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <span class="countdown-divider">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <span class="countdown-divider">:</span>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+
+                <a href="#" class="cta-button">
+                    Get Tickets
+                    <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12,5 19,12 12,19"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="hero-flyer">
+                <div class="flyer-frame">
+                    <img src="faajiFlyer.png" alt="Faaji Event Flyer" class="flyer-image">
+
+                    <!-- Audio Player Overlay -->
+                    <button class="audio-toggle" id="audioToggle" aria-label="Toggle music">
+                        <div class="audio-waves">
+                            <span class="audio-wave"></span>
+                            <span class="audio-wave"></span>
+                            <span class="audio-wave"></span>
+                        </div>
+                        <svg class="audio-icon audio-muted hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+                            <line x1="23" y1="9" x2="17" y2="15"/>
+                            <line x1="17" y1="9" x2="23" y2="15"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mobile-location">
+                    <p class="location-label">Location</p>
+                    <h3 class="venue-name">VLive Chicago</h3>
+                    <p class="venue-address">
+                        2501 S Kedzie Ave<br>
+                        Chicago, IL 60623
+                    </p>
+                </div>
+
+                <a href="#" class="cta-button mobile-cta">
+                    Get Tickets
+                    <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12,5 19,12 12,19"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <section class="location-section">
+            <div class="location-content">
+                <div>
+                    <p class="location-label">Location</p>
+                    <h3 class="venue-name">VLive Chicago</h3>
+                    <p class="venue-address">
+                        2501 S Kedzie Ave<br>
+                        Chicago, IL 60623
+                    </p>
+                </div>
+            </div>
+            <p class="footer-text">FAAJI © 2025</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
