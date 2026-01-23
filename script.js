@@ -91,19 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Countdown Timer Functions
     function getNextFriday() {
-        const now = new Date();
-        const dayOfWeek = now.getDay();
-        const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
-
-        const nextFriday = new Date(now);
-        nextFriday.setDate(now.getDate() + daysUntilFriday);
-        nextFriday.setHours(22, 0, 0, 0);
-
-        // If it's Friday but before 10 PM, target is today
-        if (dayOfWeek === 5 && now.getHours() < 22) {
-            nextFriday.setDate(now.getDate());
-        }
-
+        // Countdown to Friday, January 30th, 2026 at 10 PM
+        const nextFriday = new Date('2026-01-30T22:00:00');
         return nextFriday;
     }
 
