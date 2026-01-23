@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial volume to 20%
     backgroundMusic.volume = 0.2;
 
+    // Set starting position to 18 seconds
+    backgroundMusic.addEventListener('loadedmetadata', () => {
+        backgroundMusic.currentTime = 18;
+    });
+
     // Try to autoplay immediately and after splash screen
     const tryAutoplay = () => {
         backgroundMusic.play()
