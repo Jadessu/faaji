@@ -40,7 +40,7 @@ function App() {
       {/* Mobile video background */}
       <div className="mobile-video-bg">
         <video autoPlay muted loop playsInline>
-          <source src="/Faaji.mp4" type="video/mp4" />
+          <source src="https://pub-c076e6f3de96493b93e7e67b250b61c0.r2.dev/Faajis.mp4" type="video/mp4" />
         </video>
         <div className="mobile-video-overlay"></div>
       </div>
