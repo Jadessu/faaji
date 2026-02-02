@@ -8,7 +8,7 @@ import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 import { useEventFlyer } from './hooks/useEventFlyer';
 
-import flyerImage from './assets/images/f1.jpg';
+import flyerImage from './assets/images/faajiFlyer.jpg';
 import placeholderImage from './assets/images/placeholderFlyer.jpg';
 import audioSrc from './assets/audio/alaye.mp3';
 
@@ -24,7 +24,7 @@ import './App.css';
 // After that Friday at 10 PM, it automatically switches to placeholder.
 // Set to null to always show placeholder.
 // =============================================================================
-const FLYER_EVENT_DATE: Date | null = new Date('2025-01-31'); // Example: Friday Jan 31, 2025
+const FLYER_EVENT_DATE: Date | null = new Date('2025-02-07'); // Friday Feb 7, 2025
 // =============================================================================
 
 const TICKET_URL =
