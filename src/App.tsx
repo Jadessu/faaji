@@ -8,7 +8,6 @@ import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 import flyerImage from './assets/images/faajiFlyer.jpg';
 import audioSrc from './assets/audio/alaye.mp3';
-import videoSrc from './assets/videos/Faaji.mp4';
 
 import './styles/global.css';
 import './styles/animations.css';
@@ -41,7 +40,7 @@ function App() {
       {/* Mobile video background */}
       <div className="mobile-video-bg">
         <video autoPlay muted loop playsInline>
-          <source src={videoSrc} type="video/mp4" />
+          <source src="/Faaji.mp4" type="video/mp4" />
         </video>
         <div className="mobile-video-overlay"></div>
       </div>
