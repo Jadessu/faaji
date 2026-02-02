@@ -131,6 +131,63 @@
     height: 8px;
 }
 
+/* Animated Gradient Background */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.gradient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.15;
+}
+
+.gradient-blob--gold {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--gold) 0%, var(--gold-dark) 50%, transparent 70%);
+    top: -10%;
+    right: -5%;
+    animation: float-blob 20s ease-in-out infinite;
+}
+
+.gradient-blob--blue {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--blue-light) 0%, var(--blue) 50%, transparent 70%);
+    bottom: -10%;
+    left: -5%;
+    animation: float-blob 25s ease-in-out infinite reverse;
+}
+
+.gradient-blob--gold-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--gold-light) 0%, var(--gold) 50%, transparent 70%);
+    top: 50%;
+    left: 30%;
+    opacity: 0.1;
+    animation: float-blob 18s ease-in-out infinite 2s;
+}
+
+.gradient-blob--blue-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--blue) 0%, var(--blue-dark) 50%, transparent 70%);
+    top: 20%;
+    right: 20%;
+    opacity: 0.08;
+    animation: float-blob 22s ease-in-out infinite 4s reverse;
+}
+
 /* Ambient Glow */
 .ambient-glow {
     position: fixed;
@@ -485,5 +542,50 @@
     .audio-icon {
         width: 20px;
         height: 20px;
+    }
+}
+
+/* Mobile Video Background - Hidden on desktop */
+.mobile-video-bg {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .mobile-video-bg {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        overflow: hidden;
+    }
+
+    .mobile-video-bg video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        /* filter: blur(1px); */
+    }
+
+    .mobile-video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+    }
+
+    /* Hide gradient background on mobile when video is showing */
+    .gradient-bg {
+        display: none;
     }
 }
