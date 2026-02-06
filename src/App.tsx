@@ -6,7 +6,6 @@ import { FlyerCard } from './components/FlyerCard';
 import { LocationSection } from './components/LocationSection';
 import { MobileNav } from './components/MobileNav';
 import { Navbar } from './components/Navbar';
-import { VenueAlert } from './components/VenueAlert';
 import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 import flyerImage from './assets/images/faajiFlyer.jpg';
@@ -39,7 +38,6 @@ function App() {
     <>
       <SEO />
       <SplashScreen />
-      <VenueAlert />
 
       {/* Mobile video background */}
       <div className="mobile-video-bg">

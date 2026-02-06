@@ -20,7 +20,6 @@ export function VenueAlert() {
         />
 
         <div className="venue-alert-details">
-          <p className="venue-alert-name">Bassline</p>
           <p className="venue-alert-address">
             2239 S Michigan Ave<br />
             Chicago, IL 60616
