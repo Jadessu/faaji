@@ -6,6 +6,7 @@ import { FlyerCard } from './components/FlyerCard';
 import { LocationSection } from './components/LocationSection';
 import { MobileNav } from './components/MobileNav';
 import { Navbar } from './components/Navbar';
+import { VenueAlert } from './components/VenueAlert';
 import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 import flyerImage from './assets/images/faajiFlyer.jpg';
@@ -19,11 +20,11 @@ const TICKET_URL =
   'https://www.eventbrite.com/e/faaji-fridays-tickets-1981388283694?aff=ebdsshcopyurl&utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=organizer-profile&utm-share-source=organizer-profile';
 
 const VENUE = {
-  name: 'VLive Chicago',
-  streetAddress: '2501 S Kedzie Ave',
+  name: 'Bassline',
+  streetAddress: '2239 S Michigan Ave',
   city: 'Chicago',
   state: 'IL',
-  postalCode: '60623',
+  postalCode: '60616',
 };
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
     <>
       <SEO />
       <SplashScreen />
+      <VenueAlert />
 
       {/* Mobile video background */}
       <div className="mobile-video-bg">
@@ -75,7 +77,7 @@ function App() {
           <div className="hero-flyer">
             <FlyerCard
               imageSrc={flyerImage}
-              imageAlt="FAAJI Event Flyer - Every Friday Night at VLive Chicago"
+              imageAlt="FAAJI Event Flyer - Every Friday Night at Bassline Chicago"
             >
               <AudioPlayer isPlaying={isPlaying} onToggle={toggle} />
             </FlyerCard>

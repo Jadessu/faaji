@@ -4,6 +4,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import { BottleList } from './pages/BottleList';
+import { Mission } from './pages/Mission';
+
+/* Feature flag — set to false to show the Mission page */
+export const HIDE_MISSION = true;
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -12,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/bottles" element={<BottleList />} />
+          {!HIDE_MISSION && <Route path="/mission" element={<Mission />} />}
         </Routes>
       </BrowserRouter>
     </HelmetProvider>

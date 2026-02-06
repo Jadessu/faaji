@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { HIDE_MISSION } from '../main';
 
 const TICKET_URL =
   'https://www.eventbrite.com/e/faaji-fridays-tickets-1981388283694?aff=ebdsshcopyurl&utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=organizer-profile&utm-share-source=organizer-profile';
@@ -28,6 +29,14 @@ export function Navbar() {
       >
         Bottles
       </Link>
+      {!HIDE_MISSION && (
+        <Link
+          to="/mission"
+          className={`desktop-nav-link ${pathname === '/mission' ? 'desktop-nav-link--active' : ''}`}
+        >
+          Our Mission
+        </Link>
+      )}
     </nav>
   );
 }

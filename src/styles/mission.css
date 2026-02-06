@@ -1,0 +1,297 @@
+/* ── Mission Page ── */
+
+.mission-page {
+  min-height: 100vh;
+  padding: 80px 60px 60px;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.mission-header {
+  text-align: center;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.3s;
+}
+
+.mission-subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.mission-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.mission-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 24px auto 0;
+}
+
+/* ── Two-column layout (desktop) ── */
+.mission-layout {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+/* Content */
+.mission-content p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--white-muted);
+  margin-bottom: 28px;
+}
+
+.mission-lead {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.35rem !important;
+  font-weight: 400 !important;
+  line-height: 1.7 !important;
+  color: var(--white) !important;
+}
+
+.mission-about-label {
+  color: var(--gold) !important;
+  font-weight: 400 !important;
+  margin-bottom: 12px !important;
+}
+
+.mission-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+}
+
+.mission-list li {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--white-muted);
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.mission-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 8px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.mission-closing {
+  margin-top: 40px !important;
+  font-size: 1.1rem !important;
+  color: var(--white) !important;
+}
+
+.mission-highlight {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Gallery ── */
+
+.gallery-section {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+/* --- Thumbnail button (shared) --- */
+.gallery-thumb {
+  padding: 0;
+  border: 1px solid rgba(212, 168, 83, 0.1);
+  background: var(--black-light);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  display: block;
+}
+
+.gallery-thumb--animated {
+  opacity: 0;
+  animation: galleryFadeIn 0.5s ease forwards;
+}
+
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-thumb--animated {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.gallery-thumb:hover {
+  border-color: rgba(212, 168, 83, 0.3);
+  box-shadow: 0 0 40px rgba(212, 168, 83, 0.08);
+}
+
+.gallery-thumb:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Fixed 4:5 aspect ratio container — prevents layout shift */
+.gallery-thumb-ratio {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.gallery-thumb-ratio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.gallery-thumb:hover .gallery-thumb-ratio img {
+  transform: scale(1.04);
+}
+
+/* --- Mobile: horizontal carousel --- */
+.gallery-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 0 16px;
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(212, 168, 83, 0.08);
+}
+
+.gallery-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-carousel .gallery-thumb {
+  flex: 0 0 220px;
+  scroll-snap-align: start;
+}
+
+/* --- Desktop: vertical 2-column grid inside the right column --- */
+.gallery-grid {
+  display: none;
+}
+
+/* ── Desktop: side-by-side layout ── */
+@media (min-width: 901px) {
+  .mission-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .mission-content {
+    position: sticky;
+    top: 100px;
+  }
+
+  .gallery-section {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .gallery-carousel {
+    display: none;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 900px) {
+  .gallery-carousel .gallery-thumb {
+    flex: 0 0 240px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .mission-page {
+    padding: 30px 24px 48px;
+  }
+
+  .mission-header {
+    margin-bottom: 40px;
+  }
+
+  .mission-content p {
+    font-size: 0.95rem;
+  }
+
+  .mission-lead {
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-page {
+    padding: 20px 16px 40px;
+  }
+
+  .gallery-carousel .gallery-thumb {
+    flex: 0 0 180px;
+  }
+
+  .gallery-carousel {
+    gap: 8px;
+  }
+}
+
+/* ── Lightbox overrides — match dark premium theme ── */
+.yarl__button {
+  color: var(--gold) !important;
+}
+
+.yarl__navigation_prev,
+.yarl__navigation_next {
+  color: var(--gold) !important;
+}

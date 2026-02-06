@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import { HIDE_MISSION } from '../main';
 
 const TICKET_URL =
   'https://www.eventbrite.com/e/faaji-fridays-tickets-1981388283694?aff=ebdsshcopyurl&utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=organizer-profile&utm-share-source=organizer-profile';
@@ -44,6 +45,20 @@ export function MobileNav() {
         </svg>
         <span className="mobile-nav-label">Bottles</span>
       </Link>
+
+      {!HIDE_MISSION && (
+        <Link
+          to="/mission"
+          className={`mobile-nav-item ${pathname === '/mission' ? 'mobile-nav-item--active' : ''}`}
+        >
+          <svg className="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+          <span className="mobile-nav-label">Mission</span>
+        </Link>
+      )}
     </nav>
   );
 }

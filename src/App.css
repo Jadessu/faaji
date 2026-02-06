@@ -1,3 +1,170 @@
+/* Venue Alert Popup */
+.venue-alert-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    animation: venueAlertFadeIn 0.4s ease;
+}
+
+@keyframes venueAlertFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.venue-alert {
+    background: var(--black-light);
+    border: 1px solid rgba(212, 168, 83, 0.3);
+    padding: 40px 36px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    animation: venueAlertSlideUp 0.5s ease 0.1s both;
+}
+
+@keyframes venueAlertSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.venue-alert-badge {
+    display: inline-block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    padding: 6px 20px;
+    margin-bottom: 24px;
+}
+
+.venue-alert-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 24px;
+    line-height: 1.3;
+}
+
+.venue-alert-logo {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 24px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.venue-alert-details {
+    margin-bottom: 20px;
+}
+
+.venue-alert-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+}
+
+.venue-alert-address {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--white-muted);
+    line-height: 1.6;
+}
+
+.venue-alert-time {
+    margin-bottom: 20px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(212, 168, 83, 0.12);
+    border-bottom: 1px solid rgba(212, 168, 83, 0.12);
+}
+
+.venue-alert-time-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+}
+
+.venue-alert-time-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--white);
+}
+
+.venue-alert-note {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--white-muted);
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.venue-alert-btn {
+    display: inline-block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+    border: none;
+    padding: 16px 48px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.venue-alert-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(212, 168, 83, 0.3);
+}
+
+.venue-alert-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .venue-alert {
+        padding: 32px 24px;
+    }
+
+    .venue-alert-title {
+        font-size: 1.35rem;
+    }
+
+    .venue-alert-logo {
+        max-width: 140px;
+    }
+}
+
 /* Splash Screen */
 .splash-screen {
     position: fixed;

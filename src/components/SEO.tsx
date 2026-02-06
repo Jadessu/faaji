@@ -8,9 +8,9 @@ interface SEOProps {
 }
 
 const defaultSEO = {
-  title: 'FAAJI - Every Friday Night at VLive Chicago',
+  title: 'FAAJI - Every Friday Night at Bassline Chicago',
   description:
-    'Join us every Friday night at VLive Chicago for FAAJI - an unforgettable night of music, vibes, and celebration. Get your tickets now!',
+    'Join us every Friday night at Bassline Chicago for FAAJI - an unforgettable night of music, vibes, and celebration. Get your tickets now!',
   image: 'https://faaji.com/faajiFlyer.png',
   url: 'https://faaji.com/',
 };
@@ -20,7 +20,7 @@ const eventSchema = {
   '@type': 'Event',
   name: 'FAAJI',
   description:
-    'Every Friday night at VLive Chicago - an unforgettable night of music, vibes, and celebration',
+    'Every Friday night at Bassline Chicago - an unforgettable night of music, vibes, and celebration',
   eventSchedule: {
     '@type': 'Schedule',
     byDay: 'Friday',
@@ -31,13 +31,13 @@ const eventSchema = {
   eventStatus: 'https://schema.org/EventScheduled',
   location: {
     '@type': 'Place',
-    name: 'VLive Chicago',
+    name: 'Bassline Chicago',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '2501 S Kedzie Ave',
+      streetAddress: '2239 S Michigan Ave',
       addressLocality: 'Chicago',
       addressRegion: 'IL',
-      postalCode: '60623',
+      postalCode: '60616',
       addressCountry: 'US',
     },
   },
@@ -58,7 +58,7 @@ export function SEO(props: SEOProps) {
       <title>{seo.title}</title>
       <meta name="title" content={seo.title} />
       <meta name="description" content={seo.description} />
-      <meta name="keywords" content="FAAJI, Friday night, VLive Chicago, nightlife, event, party, music" />
+      <meta name="keywords" content="FAAJI, Friday night, Bassline Chicago, nightlife, event, party, music" />
       <meta name="theme-color" content="#D4A853" />
 
       {/* Open Graph / Facebook */}
