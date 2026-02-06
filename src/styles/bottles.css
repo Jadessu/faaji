@@ -1,0 +1,361 @@
+/* ── Bottles Page ── */
+
+.bottles-page {
+  min-height: 100vh;
+  padding: 40px 60px 60px;
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Navigation */
+.bottles-nav {
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--gold-light);
+}
+
+.back-link svg {
+  transition: transform 0.3s ease;
+}
+
+.back-link:hover svg {
+  transform: translateX(-4px);
+}
+
+/* Header */
+.bottles-header {
+  text-align: center;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.3s;
+}
+
+.bottles-subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.bottles-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+
+.bottles-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 24px auto 0;
+}
+
+/* Filter Tabs */
+.bottles-filters {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+.filter-tab {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border: 1px solid rgba(212, 168, 83, 0.2);
+  background: transparent;
+  color: var(--white-muted);
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-tab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -1;
+}
+
+.filter-tab:hover {
+  border-color: rgba(212, 168, 83, 0.5);
+  color: var(--white);
+}
+
+.filter-tab--active {
+  border-color: var(--gold);
+  color: var(--black);
+}
+
+.filter-tab--active::before {
+  opacity: 1;
+}
+
+.filter-tab--active:hover {
+  color: var(--black);
+}
+
+/* Content */
+.bottles-content {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+/* Category */
+.bottle-category {
+  margin-bottom: 48px;
+}
+
+.bottle-category:last-child {
+  margin-bottom: 0;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.category-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.2), transparent);
+}
+
+.category-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* Bottle Grid */
+.bottle-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Bottle Card */
+.bottle-card {
+  opacity: 0;
+  animation: bottleSlideIn 0.6s ease forwards;
+}
+
+@keyframes bottleSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bottle-card-inner {
+  position: relative;
+  padding: 18px 24px;
+  border: 1px solid rgba(212, 168, 83, 0.06);
+  background: rgba(20, 20, 20, 0.4);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.bottle-card-inner:hover {
+  border-color: rgba(212, 168, 83, 0.2);
+  background: rgba(20, 20, 20, 0.7);
+}
+
+.bottle-card-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 83, 0.04), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.bottle-card-inner:hover .bottle-card-glow {
+  left: 120%;
+}
+
+/* Bottle Info Row */
+.bottle-info {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.bottle-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--white);
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.bottle-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(212, 168, 83, 0.15);
+  min-width: 40px;
+  margin-bottom: 4px;
+}
+
+.bottle-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Footer */
+.bottles-footer {
+  text-align: center;
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(212, 168, 83, 0.08);
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+.bottles-footer p {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--white-muted);
+  font-weight: 300;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 900px) {
+  .bottles-page {
+    padding: 30px 24px 48px;
+  }
+
+  .bottles-header {
+    margin-bottom: 36px;
+  }
+
+  .bottles-filters {
+    margin-bottom: 40px;
+    gap: 6px;
+  }
+
+  .filter-tab {
+    padding: 8px 18px;
+    font-size: 0.65rem;
+  }
+
+  .category-header {
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .category-name {
+    font-size: 1.1rem;
+  }
+
+  .bottle-card-inner {
+    padding: 14px 18px;
+  }
+
+  .bottle-name {
+    font-size: 1rem;
+  }
+
+  .bottle-price {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bottles-page {
+    padding: 20px 16px 40px;
+  }
+
+  .bottles-nav {
+    margin-bottom: 32px;
+  }
+
+  .bottles-filters {
+    gap: 4px;
+    margin-bottom: 32px;
+  }
+
+  .filter-tab {
+    padding: 8px 14px;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+  }
+
+  .bottle-card-inner {
+    padding: 12px 14px;
+  }
+
+  .bottle-name {
+    font-size: 0.92rem;
+  }
+
+  .bottle-price {
+    font-size: 1rem;
+  }
+
+  .category-name {
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+  }
+
+  .category-header {
+    gap: 12px;
+  }
+}
