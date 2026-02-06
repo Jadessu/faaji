@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 import { MobileNav } from '../components/MobileNav';
+import { Navbar } from '../components/Navbar';
 import '../styles/bottles.css';
 
 interface Bottle {
@@ -65,17 +65,9 @@ export function BottleList() {
       </div>
       <div className="ambient-glow"></div>
 
-      <div className="bottles-page">
-        <nav className="bottles-nav">
-          <Link to="/" className="back-link" aria-label="Back to home">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12" />
-              <polyline points="12 19 5 12 12 5" />
-            </svg>
-            <span>Home</span>
-          </Link>
-        </nav>
+      <Navbar />
 
+      <div className="bottles-page">
         <header className="bottles-header">
           <span className="bottles-subtitle">Premium Selection</span>
           <h1 className="bottles-title">Bottle Menu</h1>

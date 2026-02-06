@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { SplashScreen } from './components/SplashScreen';
 import { AudioPlayer } from './components/AudioPlayer';
 import { Countdown } from './components/Countdown';
@@ -6,6 +5,7 @@ import { CTAButton } from './components/CTAButton';
 import { FlyerCard } from './components/FlyerCard';
 import { LocationSection } from './components/LocationSection';
 import { MobileNav } from './components/MobileNav';
+import { Navbar } from './components/Navbar';
 import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 import flyerImage from './assets/images/faajiFlyer.jpg';
@@ -57,6 +57,8 @@ function App() {
 
       <div className="ambient-glow"></div>
 
+      <Navbar />
+
       <main>
         <section className="hero">
           <div className="hero-info">
@@ -68,13 +70,6 @@ function App() {
             <Countdown />
 
             <CTAButton href={TICKET_URL}>Get Tickets</CTAButton>
-            <Link to="/bottles" className="bottle-menu-link">
-              View Bottle Menu
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </Link>
           </div>
 
           <div className="hero-flyer">
@@ -90,14 +85,6 @@ function App() {
             <CTAButton href={TICKET_URL} className="mobile-cta">
               Get Tickets
             </CTAButton>
-
-            <Link to="/bottles" className="bottle-menu-link mobile-bottle-link">
-              View Bottle Menu
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </Link>
           </div>
         </section>
 

@@ -359,39 +359,37 @@
     transform: translateX(4px);
 }
 
-/* Bottle Menu Link */
-.bottle-menu-link {
-    display: inline-flex;
-    align-items: center;
+/* Desktop Navbar */
+.desktop-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
     gap: 8px;
-    margin-top: 20px;
+    padding: 28px 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+.desktop-nav-link {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--white-muted);
     text-decoration: none;
-    transition: all 0.3s ease;
-    opacity: 0;
-    animation: fadeUp 1s ease forwards 1.1s;
-    align-self: flex-start;
+    padding: 8px 20px;
+    transition: color 0.3s ease;
 }
 
-.bottle-menu-link:hover {
-    color: var(--gold-light);
+.desktop-nav-link:hover {
+    color: var(--white);
 }
 
-.bottle-menu-link svg {
-    transition: transform 0.3s ease;
-}
-
-.bottle-menu-link:hover svg {
-    transform: translateX(4px);
-}
-
-.mobile-bottle-link {
-    display: none;
+.desktop-nav-link--active {
+    color: var(--gold);
 }
 
 /* Hero Flyer */
@@ -543,13 +541,8 @@
         padding: 18px 40px;
     }
 
-    .hero-info .bottle-menu-link {
+    .desktop-nav {
         display: none;
-    }
-
-    .mobile-bottle-link {
-        display: inline-flex;
-        align-self: center;
     }
 
     .location-section {

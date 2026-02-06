@@ -2,43 +2,10 @@
 
 .bottles-page {
   min-height: 100vh;
-  padding: 40px 60px 60px;
+  padding: 80px 60px 60px;
   position: relative;
   max-width: 960px;
   margin: 0 auto;
-}
-
-/* Navigation */
-.bottles-nav {
-  margin-bottom: 48px;
-  opacity: 0;
-  animation: fadeUp 0.8s ease forwards 0.2s;
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.back-link:hover {
-  color: var(--gold-light);
-}
-
-.back-link svg {
-  transition: transform 0.3s ease;
-}
-
-.back-link:hover svg {
-  transform: translateX(-4px);
 }
 
 /* Header */
