@@ -39,6 +39,7 @@ const BOTTLE_MENU: Category[] = [
     name: 'Champagne',
     bottles: [
       { name: 'Moët & Chandon', price: 420 },
+      { name: 'Belaire', price: 250 },
     ],
   },
 ];

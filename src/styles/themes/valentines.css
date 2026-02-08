@@ -1,0 +1,145 @@
+/* Valentine's Day Theme
+   Activated via data-theme="valentines" on <html>.
+   Overrides CSS custom properties so every existing component
+   picks up the new palette automatically. */
+
+[data-theme="valentines"] {
+    --gold: #E8577D;
+    --gold-light: #F7A8C4;
+    --gold-dark: #B8304F;
+
+    --blue: #5C1A3A;
+    --blue-light: #872D5A;
+    --blue-dark: #400F24;
+}
+
+/* ── Splash screen hearts ── */
+
+[data-theme="valentines"] .splash-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F7A8C4'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8577D'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B8304F'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F7A8C4'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8577D'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    background-size: 18px 18px, 12px 12px, 22px 22px, 14px 14px, 16px 16px;
+    background-repeat: no-repeat;
+    animation: splash-hearts-rise 2.5s ease-out forwards;
+}
+
+@keyframes splash-hearts-rise {
+    0% {
+        background-position: 8% 120%, 30% 130%, 55% 125%, 75% 135%, 92% 120%;
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.35;
+    }
+    80% {
+        opacity: 0.35;
+    }
+    100% {
+        background-position: 12% 10%, 25% -5%, 50% 15%, 78% -10%, 88% 5%;
+        opacity: 0;
+    }
+}
+
+/* ── Floating hearts ── */
+
+[data-theme="valentines"] .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8577D'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    background-size: 16px 16px;
+    background-repeat: repeat;
+    opacity: 0;
+    animation: hearts-twinkle 6s ease-in-out infinite;
+}
+
+@keyframes hearts-twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.04; }
+}
+
+/* Individual floating heart particles */
+[data-theme="valentines"] .gradient-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F7A8C4'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23E8577D'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B8304F'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+    background-size: 14px 14px, 10px 10px, 18px 18px;
+    background-position: 10% 0%, 60% 0%, 85% 0%;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    animation: hearts-float 12s ease-in-out infinite;
+    opacity: 0.25;
+}
+
+@keyframes hearts-float {
+    0% {
+        background-position: 10% 110%, 60% 115%, 85% 120%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.25;
+    }
+    90% {
+        opacity: 0.25;
+    }
+    100% {
+        background-position: 15% -10%, 55% -15%, 80% -5%;
+        opacity: 0;
+    }
+}
+
+/* Ambient glow uses a hardcoded rgba — override to rose */
+[data-theme="valentines"] .ambient-glow {
+    background: radial-gradient(circle, rgba(232, 87, 125, 0.12) 0%, transparent 70%);
+}
+
+/* Flyer frame hover glow */
+[data-theme="valentines"] .flyer-frame:hover {
+    border-color: rgba(232, 87, 125, 0.5);
+    box-shadow: 0 0 80px rgba(232, 87, 125, 0.15);
+}
+
+/* CTA button hover shadow */
+[data-theme="valentines"] .cta-button:hover {
+    box-shadow: 0 20px 60px rgba(232, 87, 125, 0.3);
+}
+
+/* Audio toggle shadow */
+[data-theme="valentines"] .audio-toggle {
+    box-shadow: 0 4px 20px rgba(232, 87, 125, 0.3);
+}
+
+[data-theme="valentines"] .audio-toggle:hover {
+    box-shadow: 0 6px 30px rgba(232, 87, 125, 0.5);
+}
+
+/* Venue alert button hover (if re-enabled in future) */
+[data-theme="valentines"] .venue-alert-btn:hover {
+    box-shadow: 0 12px 40px rgba(232, 87, 125, 0.3);
+}
+
+/* Location section border */
+[data-theme="valentines"] .location-section {
+    border-top-color: rgba(232, 87, 125, 0.1);
+}
+
+/* Mobile nav border */
+[data-theme="valentines"] .mobile-nav {
+    border-top-color: rgba(232, 87, 125, 0.12);
+}

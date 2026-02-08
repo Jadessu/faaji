@@ -19,11 +19,11 @@ const TICKET_URL =
   'https://www.eventbrite.com/e/faaji-fridays-tickets-1981388283694?aff=ebdsshcopyurl&utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=organizer-profile&utm-share-source=organizer-profile';
 
 const VENUE = {
-  name: 'Bassline',
-  streetAddress: '2239 S Michigan Ave',
+  name: 'VLive Chicago',
+  streetAddress: '2501 S Kedzie Ave',
   city: 'Chicago',
   state: 'IL',
-  postalCode: '60616',
+  postalCode: '60623',
 };
 
 function App() {
