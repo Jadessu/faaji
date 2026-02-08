@@ -1,0 +1,361 @@
+/* Tickets Page */
+
+.tickets-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 120px 60px 60px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.tickets-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.tickets-subtitle {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.tickets-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.3s;
+}
+
+.tickets-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 20px auto 0;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+}
+
+/* Loading State */
+.tickets-loading {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--white-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+}
+
+.tickets-spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid rgba(212, 168, 83, 0.15);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Error State */
+.tickets-error {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--white-muted);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.tickets-fallback-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+    text-decoration: none;
+    padding: 14px 36px;
+    transition: all 0.3s ease;
+}
+
+.tickets-fallback-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(212, 168, 83, 0.3);
+}
+
+/* Empty State */
+.tickets-empty {
+    text-align: center;
+    padding: 80px 0;
+    color: var(--white-muted);
+    font-size: 0.85rem;
+}
+
+/* ── Ticket Grid — row of cards on desktop ── */
+.tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+/* ── Ticket Card ── */
+.ticket-card {
+    opacity: 0;
+    animation: ticketSlideIn 0.6s ease forwards;
+}
+
+@keyframes ticketSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ticket-card--sold-out {
+    opacity: 0;
+}
+
+.ticket-card--sold-out .ticket-card-inner {
+    opacity: 0.5;
+}
+
+.ticket-card-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--black-light);
+    border: 1px solid rgba(212, 168, 83, 0.1);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.ticket-card-inner:hover {
+    border-color: rgba(212, 168, 83, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.ticket-card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(212, 168, 83, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Card Image */
+.ticket-card-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+}
+
+.ticket-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.ticket-card-inner:hover .ticket-card-image img {
+    transform: scale(1.04);
+}
+
+/* Card Body */
+.ticket-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+/* Ticket Info */
+.ticket-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.ticket-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--white);
+}
+
+.ticket-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    white-space: nowrap;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Status Badge */
+.ticket-status {
+    margin-bottom: 16px;
+}
+
+.ticket-badge {
+    display: inline-block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+}
+
+.ticket-badge--available {
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.25);
+}
+
+.ticket-badge--free {
+    color: var(--gold);
+    border: 1px solid rgba(212, 168, 83, 0.25);
+}
+
+.ticket-badge--sold-out {
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+/* Purchase Button */
+.ticket-btn {
+    display: block;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+    padding: 14px 0;
+    margin-top: auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.ticket-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.ticket-btn:hover::before {
+    left: 100%;
+}
+
+.ticket-btn:hover {
+    box-shadow: 0 8px 30px rgba(212, 168, 83, 0.25);
+}
+
+.ticket-btn--disabled {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white-muted);
+    cursor: not-allowed;
+}
+
+.ticket-btn--disabled:hover {
+    box-shadow: none;
+}
+
+.ticket-btn--disabled::before {
+    display: none;
+}
+
+/* Footer */
+.tickets-footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(212, 168, 83, 0.08);
+}
+
+.tickets-footer p {
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--white-muted);
+}
+
+/* ── Tablet ── */
+@media (max-width: 900px) {
+    .tickets-page {
+        padding: 100px 24px 40px;
+    }
+
+    .tickets-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 16px;
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 480px) {
+    .tickets-page {
+        padding: 80px 20px 40px;
+    }
+
+    .tickets-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .ticket-card-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .ticket-card-body {
+        padding: 20px;
+    }
+
+    .ticket-name {
+        font-size: 1.1rem;
+    }
+
+    .ticket-price {
+        font-size: 1.2rem;
+    }
+}

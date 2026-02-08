@@ -9,7 +9,7 @@ import { Navbar } from './components/Navbar';
 import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 import flyerImage from './assets/images/faajiFlyer.jpg';
-import audioSrc from './assets/audio/alaye.mp3';
+import audioSrc from './assets/audio/Soweto.mp3';
 
 import './styles/global.css';
 import './styles/animations.css';
@@ -30,8 +30,9 @@ function App() {
   const { isPlaying, toggle } = useAudioPlayer({
     src: audioSrc,
     volume: 0.2,
-    startTime: 18,
+    startTime: 0,
     autoPlay: true,
+    autoPlayDelay: 0,
   });
 
   return (

@@ -1,8 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { HIDE_MISSION } from '../main';
-
-const TICKET_URL =
-  'https://www.eventbrite.com/e/faaji-fridays-tickets-1981388283694?aff=ebdsshcopyurl&utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=organizer-profile&utm-share-source=organizer-profile';
+import { HIDE_MISSION, HIDE_TICKETS_PAGE, TICKET_URL } from '../main';
 
 export function Navbar() {
   const { pathname } = useLocation();
@@ -15,14 +12,23 @@ export function Navbar() {
       >
         Home
       </Link>
-      <a
-        href={TICKET_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="desktop-nav-link"
-      >
-        Tickets
-      </a>
+      {HIDE_TICKETS_PAGE ? (
+        <a
+          href={TICKET_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="desktop-nav-link"
+        >
+          Tickets
+        </a>
+      ) : (
+        <Link
+          to="/tickets"
+          className={`desktop-nav-link ${pathname === '/tickets' ? 'desktop-nav-link--active' : ''}`}
+        >
+          Tickets
+        </Link>
+      )}
       <Link
         to="/bottles"
         className={`desktop-nav-link ${pathname === '/bottles' ? 'desktop-nav-link--active' : ''}`}

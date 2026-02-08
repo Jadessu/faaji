@@ -55,7 +55,7 @@ export function useAudioPlayer(options: UseAudioPlayerOptions): UseAudioPlayerRe
     const audio = new Audio(src);
     audio.loop = true;
     audio.volume = volume;
-    audio.preload = 'none';
+    audio.preload = 'auto';
     audioRef.current = audio;
 
     // Set start time when metadata is loaded
@@ -67,17 +67,9 @@ export function useAudioPlayer(options: UseAudioPlayerOptions): UseAudioPlayerRe
 
     // Handle autoplay
     if (autoPlay) {
-      // Try autoplay on load
-      const handleLoad = () => {
-        tryAutoplay();
-      };
-      window.addEventListener('load', handleLoad);
-
-      // Try again after splash screen delay
+      // Try autoplay immediately or after a delay
       const delayedAutoplay = setTimeout(() => {
-        if (!isPlaying) {
-          tryAutoplay();
-        }
+        tryAutoplay();
       }, autoPlayDelay);
 
       // Fallback: try on first user interaction
@@ -92,7 +84,6 @@ export function useAudioPlayer(options: UseAudioPlayerOptions): UseAudioPlayerRe
 
       return () => {
         audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-        window.removeEventListener('load', handleLoad);
         clearTimeout(delayedAutoplay);
         document.removeEventListener('click', startOnInteraction);
         document.removeEventListener('touchstart', startOnInteraction);
@@ -106,7 +97,7 @@ export function useAudioPlayer(options: UseAudioPlayerOptions): UseAudioPlayerRe
       audio.pause();
       audio.src = '';
     };
-  }, [src, volume, startTime, autoPlay, autoPlayDelay, tryAutoplay, isPlaying]);
+  }, [src, volume, startTime, autoPlay, autoPlayDelay, tryAutoplay]);
 
   return { audioRef, isPlaying, toggle };
 }

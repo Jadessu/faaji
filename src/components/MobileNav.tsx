@@ -1,8 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
-import { HIDE_MISSION } from '../main';
+import { HIDE_MISSION, HIDE_TICKETS_PAGE, TICKET_URL } from '../main';
 
-const TICKET_URL =
-  'https://www.eventbrite.com/e/faaji-fridays-tickets-1981388283694?aff=ebdsshcopyurl&utm-campaign=social&utm-content=attendeeshare&utm-medium=discovery&utm-term=organizer-profile&utm-share-source=organizer-profile';
+const ticketIcon = (
+  <svg className="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
+    <path d="M13 5v2" />
+    <path d="M13 17v2" />
+    <path d="M13 11v2" />
+  </svg>
+);
 
 export function MobileNav() {
   const { pathname } = useLocation();
@@ -20,20 +26,25 @@ export function MobileNav() {
         <span className="mobile-nav-label">Home</span>
       </Link>
 
-      <a
-        href={TICKET_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mobile-nav-item"
-      >
-        <svg className="mobile-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
-          <path d="M13 5v2" />
-          <path d="M13 17v2" />
-          <path d="M13 11v2" />
-        </svg>
-        <span className="mobile-nav-label">Tickets</span>
-      </a>
+      {HIDE_TICKETS_PAGE ? (
+        <a
+          href={TICKET_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mobile-nav-item"
+        >
+          {ticketIcon}
+          <span className="mobile-nav-label">Tickets</span>
+        </a>
+      ) : (
+        <Link
+          to="/tickets"
+          className={`mobile-nav-item ${pathname === '/tickets' ? 'mobile-nav-item--active' : ''}`}
+        >
+          {ticketIcon}
+          <span className="mobile-nav-label">Tickets</span>
+        </Link>
+      )}
 
       <Link
         to="/bottles"
