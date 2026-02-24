@@ -26,7 +26,7 @@ const eventSchema = {
     byDay: 'Friday',
     repeatFrequency: 'P1W',
   },
-  startDate: '2025-01-24T22:00:00-06:00',
+  startDate: '2025-01-24T23:00:00-06:00',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   eventStatus: 'https://schema.org/EventScheduled',
   location: {

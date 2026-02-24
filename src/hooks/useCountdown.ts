@@ -33,7 +33,7 @@ function getNextFriday(targetDay: number, targetHour: number): Date {
 }
 
 export function useCountdown(options: UseCountdownOptions = {}): CountdownTime {
-  const { targetDay = 5, targetHour = 22 } = options; // Default: Friday at 10 PM
+  const { targetDay = 5, targetHour = 23 } = options; // Default: Friday at 11 PM
 
   const [countdown, setCountdown] = useState<CountdownTime>({
     days: '00',

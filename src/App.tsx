@@ -5,10 +5,11 @@ import { CTAButton } from './components/CTAButton';
 import { FlyerCard } from './components/FlyerCard';
 import { LocationSection } from './components/LocationSection';
 import { MobileNav } from './components/MobileNav';
+import { UpcomingEvents } from './components/UpcomingEvents';
 import { Navbar } from './components/Navbar';
 import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
-import flyerImage from './assets/images/faajiFlyer.jpg';
+import flyerImage from './assets/images/faajiFlyer.png';
 import audioSrc from './assets/audio/Soweto.mp3';
 
 import './styles/global.css';
@@ -88,6 +89,8 @@ function App() {
             </CTAButton>
           </div>
         </section>
+
+        <UpcomingEvents />
 
         <LocationSection venue={VENUE} />
       </main>

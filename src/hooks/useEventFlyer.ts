@@ -12,7 +12,7 @@ interface UseEventFlyerOptions {
  *
  * Usage:
  * 1. When you upload a new flyer, set FLYER_EVENT_DATE to the Friday it's for
- * 2. After that Friday at 10 PM passes, it auto-switches to placeholder
+ * 2. After that Friday at 11 PM passes, it auto-switches to placeholder
  * 3. Set FLYER_EVENT_DATE to null to always show placeholder
  */
 export function useEventFlyer({
@@ -23,9 +23,9 @@ export function useEventFlyer({
   const [isPlaceholder, setIsPlaceholder] = useState(() => {
     if (!flyerEventDate) return true;
 
-    // Check if the event date (Friday 10 PM) has passed
+    // Check if the event date (Friday 11 PM) has passed
     const eventTime = new Date(flyerEventDate);
-    eventTime.setHours(22, 0, 0, 0); // 10 PM
+    eventTime.setHours(23, 0, 0, 0); // 11 PM
     return new Date() > eventTime;
   });
 
@@ -37,7 +37,7 @@ export function useEventFlyer({
 
     const checkFlyerStatus = () => {
       const eventTime = new Date(flyerEventDate);
-      eventTime.setHours(22, 0, 0, 0); // 10 PM
+      eventTime.setHours(23, 0, 0, 0); // 11 PM
       const now = new Date();
       setIsPlaceholder(now > eventTime);
     };

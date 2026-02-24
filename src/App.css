@@ -594,6 +594,172 @@
     backface-visibility: hidden;
 }
 
+/* Upcoming Events Section */
+.upcoming-events {
+    padding: 80px 60px;
+    border-top: 1px solid rgba(212, 168, 83, 0.1);
+}
+
+.upcoming-section-header {
+    margin-bottom: 48px;
+}
+
+.upcoming-section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.upcoming-section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--white);
+    letter-spacing: 0.05em;
+}
+
+.upcoming-grid {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.upcoming-card {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.upcoming-flyer-frame {
+    width: 200px;
+    flex-shrink: 0;
+    aspect-ratio: 4/5;
+    background: var(--black-light);
+    border: 1px solid rgba(212, 168, 83, 0.2);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.upcoming-flyer-frame:hover {
+    border-color: rgba(212, 168, 83, 0.5);
+    box-shadow: 0 0 60px rgba(212, 168, 83, 0.12);
+}
+
+a.upcoming-flyer-frame {
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.upcoming-flyer-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.upcoming-flyer-frame:hover .upcoming-flyer-img {
+    transform: scale(1.03);
+}
+
+.upcoming-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.upcoming-card-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.upcoming-card-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+}
+
+.upcoming-card-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white-muted);
+}
+
+.upcoming-card-btn {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    padding: 14px 36px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--black);
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.upcoming-card-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(212, 168, 83, 0.3);
+}
+
+@media (max-width: 900px) {
+    .upcoming-events {
+        padding: 48px 24px;
+        text-align: center;
+    }
+
+    .upcoming-grid {
+        justify-content: center;
+    }
+
+    .upcoming-card {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .upcoming-card-info {
+        align-items: center;
+    }
+
+    .upcoming-card-btn {
+        align-self: center;
+    }
+
+    .upcoming-flyer-frame {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .upcoming-events {
+        padding: 40px 20px;
+    }
+
+    .upcoming-flyer-frame {
+        max-width: 240px;
+    }
+
+    .upcoming-card-date {
+        font-size: 2rem;
+    }
+}
+
 /* Location Section */
 .location-section {
     padding: 80px 60px;

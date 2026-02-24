@@ -5,7 +5,7 @@ interface CountdownProps {
   targetHour?: number;
 }
 
-export function Countdown({ targetDay = 5, targetHour = 22 }: CountdownProps) {
+export function Countdown({ targetDay = 5, targetHour = 23 }: CountdownProps) {
   const { days, hours, minutes, seconds } = useCountdown({ targetDay, targetHour });
 
   return (

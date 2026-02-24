@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { SEO } from '../components/SEO';
 import { MobileNav } from '../components/MobileNav';
 import { Navbar } from '../components/Navbar';
-import flyerImage from '../assets/images/faajiFlyer.jpg';
+import flyerImage from '../assets/images/faajiFlyer.png';
 import '../styles/tickets.css';
 
 interface Ticket {
