@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti';
 import { SplashScreen } from './components/SplashScreen';
 import { AudioPlayer } from './components/AudioPlayer';
 import { Countdown } from './components/Countdown';
@@ -10,6 +12,7 @@ import { Navbar } from './components/Navbar';
 import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
 import flyerImage from './assets/images/faajiFlyer.png';
+import kdbdFlyer from './assets/images/KDBD.png';
 import audioSrc from './assets/audio/Soweto.mp3';
 
 import './styles/global.css';
@@ -35,6 +38,23 @@ function App() {
     autoPlay: true,
     autoPlayDelay: 0,
   });
+  const [duoActive, setDuoActive] = useState(0);
+  const duoMounted = useRef(false);
+
+  useEffect(() => {
+    if (!duoMounted.current) { duoMounted.current = true; return; }
+    if (duoActive !== 1) return;
+
+    const colors = ['#f87dac', '#d4a853', '#b57bee', '#f9e04b', '#7bcef8'];
+    const shared = { colors, ticks: 120, startVelocity: 28, gravity: 0.9, scalar: 0.9 };
+
+    confetti({ ...shared, particleCount: 60, angle: 60, spread: 70, origin: { x: 0, y: 0.65 } });
+    confetti({ ...shared, particleCount: 60, angle: 120, spread: 70, origin: { x: 1, y: 0.65 } });
+
+    setTimeout(() => {
+      confetti({ ...shared, particleCount: 30, angle: 90, spread: 50, origin: { x: 0.5, y: 0.5 } });
+    }, 200);
+  }, [duoActive]);
 
   return (
     <>
@@ -75,12 +95,47 @@ function App() {
           </div>
 
           <div className="hero-flyer">
-            <FlyerCard
-              imageSrc={flyerImage}
-              imageAlt="FAAJI Event Flyer - Every Friday Night at Bassline Chicago"
-            >
-              <AudioPlayer isPlaying={isPlaying} onToggle={toggle} />
-            </FlyerCard>
+            {/* Desktop: main flyer + also-tonight strip */}
+            <div className="hero-flyer-main">
+              <FlyerCard
+                imageSrc={flyerImage}
+                imageAlt="FAAJI Event Flyer - Every Friday Night at Bassline Chicago"
+              >
+                <AudioPlayer isPlaying={isPlaying} onToggle={toggle} />
+              </FlyerCard>
+
+              <div className="also-tonight">
+                <img src={kdbdFlyer} alt="Birthday Celebration Flyer" className="also-tonight-thumb" />
+                <div className="also-tonight-text">
+                  <span className="also-tonight-label">Also Tonight</span>
+                  <span className="also-tonight-title">Khayd Birthday Celebration</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile: two-flyer depth duo */}
+            <div className="flyer-duo">
+              <div className="flyer-duo-track">
+                <div
+                  className={`flyer-duo-item ${duoActive === 0 ? 'flyer-duo-item--active' : 'flyer-duo-item--peek-left'}`}
+                  onClick={() => setDuoActive(0)}
+                >
+                  <img src={flyerImage} alt="FAAJI Event Flyer" />
+                  <div className="flyer-duo-audio" onClick={e => e.stopPropagation()}>
+                    <AudioPlayer isPlaying={isPlaying} onToggle={toggle} />
+                  </div>
+                </div>
+                <div
+                  className={`flyer-duo-item ${duoActive === 1 ? 'flyer-duo-item--active' : 'flyer-duo-item--peek-right'}`}
+                  onClick={() => setDuoActive(1)}
+                >
+                  <img src={kdbdFlyer} alt="Birthday Celebration Flyer" />
+                </div>
+              </div>
+              <p className="flyer-duo-label">
+                {duoActive === 0 ? 'Faaji Fridays' : 'Khayd Birthday Celebration'}
+              </p>
+            </div>
 
             <LocationSection venue={VENUE} isMobile />
 

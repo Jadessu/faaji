@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 
@@ -43,7 +43,7 @@ const images: GalleryImage[] = Object.keys(thumbModules)
 
 export function Gallery() {
   const [lightboxIndex, setLightboxIndex] = useState(-1);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [slideIndex, setSlideIndex] = useState(0);
 
   const openLightbox = useCallback((index: number) => {
     setLightboxIndex(index);
@@ -52,6 +52,21 @@ export function Gallery() {
   const closeLightbox = useCallback(() => {
     setLightboxIndex(-1);
   }, []);
+
+  const prevSlide = useCallback(() => {
+    setSlideIndex(i => (i - 1 + images.length) % images.length);
+  }, []);
+
+  const nextSlide = useCallback(() => {
+    setSlideIndex(i => (i + 1) % images.length);
+  }, []);
+
+  function getSlideState(i: number): 'active' | 'prev' | 'next' | 'hidden' {
+    if (i === slideIndex) return 'active';
+    if (i === (slideIndex - 1 + images.length) % images.length) return 'prev';
+    if (i === (slideIndex + 1) % images.length) return 'next';
+    return 'hidden';
+  }
 
   /* Respect prefers-reduced-motion */
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -65,33 +80,49 @@ export function Gallery() {
 
   return (
     <section className="gallery-section" aria-label="Photo gallery">
-      {/* Mobile: horizontal scroll carousel */}
-      <div
-        ref={scrollRef}
-        className="gallery-carousel"
-        role="region"
-        aria-label="Party photos carousel"
-        tabIndex={0}
-      >
-        {images.map((img, i) => (
-          <button
-            key={i}
-            className={`gallery-thumb ${!reducedMotion ? 'gallery-thumb--animated' : ''}`}
-            style={!reducedMotion ? { animationDelay: `${i * 0.06}s` } : undefined}
-            onClick={() => openLightbox(i)}
-            aria-label={`View ${img.alt} full size`}
-            type="button"
-          >
-            <div className="gallery-thumb-ratio">
-              <img
-                src={img.thumb}
-                alt={img.alt}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </button>
-        ))}
+      {/* Mobile: depth slider */}
+      <div className="gallery-slider" role="region" aria-label="Party photos slider">
+        <button
+          className="gallery-slider-arrow gallery-slider-arrow--prev"
+          onClick={prevSlide}
+          aria-label="Previous photo"
+          type="button"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        <div className="gallery-slider-track">
+          {images.map((img, i) => {
+            const state = getSlideState(i);
+            if (state === 'hidden') return null;
+            return (
+              <div
+                key={i}
+                className={`gallery-slide gallery-slide--${state}`}
+                onClick={() => state === 'active' ? openLightbox(i) : state === 'prev' ? prevSlide() : nextSlide()}
+              >
+                <div className="gallery-thumb-ratio">
+                  <img src={img.thumb} alt={img.alt} loading="lazy" decoding="async" />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <button
+          className="gallery-slider-arrow gallery-slider-arrow--next"
+          onClick={nextSlide}
+          aria-label="Next photo"
+          type="button"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+
+        <p className="gallery-slider-counter">{slideIndex + 1} / {images.length}</p>
       </div>
 
       {/* Desktop: responsive grid */}

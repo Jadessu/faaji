@@ -33,7 +33,7 @@ export function Mission() {
         <div className="mission-layout">
           <div className="mission-content">
             <p className="mission-lead">
-              At Faaji, our mission is simple:<br />
+              At Faaji House, our mission is simple:<br />
               to create unforgettable nights where culture, music, and community collide.
             </p>
 
@@ -51,7 +51,7 @@ export function Mission() {
               carry you.
             </p>
 
-            <p className="mission-about-label">Faaji is about:</p>
+            <p className="mission-about-label">Faaji House is about:</p>
             <ul className="mission-list">
               <li>Celebrating African and global culture</li>
               <li>Creating safe, vibrant, and elevated nightlife experiences</li>
@@ -66,7 +66,7 @@ export function Mission() {
 
             <p className="mission-closing">
               This isn't just a party.<br />
-              <span className="mission-highlight">This is Faaji.</span>
+              <span className="mission-highlight">This is Faaji House.</span>
             </p>
           </div>
 
