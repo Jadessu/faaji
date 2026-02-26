@@ -11,7 +11,7 @@ import { useTheme } from './hooks/useTheme';
 import './styles/themes/valentines.css';
 
 /* Feature flags — set to false to enable */
-export const HIDE_MISSION = true;
+export const HIDE_MISSION = false;
 export const HIDE_TICKETS_PAGE = true;
 
 /** When the tickets page is off, nav links use this external URL instead */
