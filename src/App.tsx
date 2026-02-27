@@ -11,9 +11,61 @@ import { UpcomingEvents } from './components/UpcomingEvents';
 import { Navbar } from './components/Navbar';
 import { SEO } from './components/SEO';
 import { useAudioPlayer } from './hooks/useAudioPlayer';
-import flyerImage from './assets/images/faajiFlyer.png';
+import { ACTIVE_THEME, THEME_CONFIGS } from './config/theme';
+import genericFlyer from './assets/images/generic.png';
+import ghanaFlyer from './assets/images/Ghana.png';
+import stPatrickFlyer from './assets/images/stpatrick.jpg';
 import kdbdFlyer from './assets/images/KDBD.png';
-import audioSrc from './assets/audio/Soweto.mp3';
+import sowetoAudio from './assets/audio/Soweto.mp3';
+import ghanaAudio from './assets/audio/ghana.mp3';
+import stPatrickAudio from './assets/audio/stpatrick.mp3';
+
+// Eagerly import all date-named weekly flyers: flyer0227.png, flyer0320.jpg, etc.
+const weeklyFlyerModules = import.meta.glob<{ default: string }>(
+  './assets/images/flyer*.{png,jpg,jpeg}',
+  { eager: true }
+);
+
+// Find the flyer for the upcoming Friday (e.g. "0320" → flyer0320.png)
+function getWeeklyFlyer(): string | null {
+  const now = new Date();
+  const daysUntilFriday = (5 - now.getDay() + 7) % 7;
+  const friday = new Date(now);
+  friday.setDate(now.getDate() + daysUntilFriday);
+
+  const mmdd =
+    String(friday.getMonth() + 1).padStart(2, '0') +
+    String(friday.getDate()).padStart(2, '0');
+
+  for (const [path, mod] of Object.entries(weeklyFlyerModules)) {
+    if (path.includes(`flyer${mmdd}`)) return mod.default;
+  }
+  return null;
+}
+
+const WEEKLY_FLYER = getWeeklyFlyer();
+
+const audioSrc =
+  ACTIVE_THEME === 'ghana'     ? ghanaAudio :
+  ACTIVE_THEME === 'stpatrick' ? stPatrickAudio :
+  sowetoAudio;
+
+const heroFlyer =
+  ACTIVE_THEME === 'ghana'     ? ghanaFlyer :
+  ACTIVE_THEME === 'stpatrick' ? stPatrickFlyer :
+  WEEKLY_FLYER ?? genericFlyer;
+
+// Build a fixed countdown target if the active theme specifies one
+const themeConfig = THEME_CONFIGS[ACTIVE_THEME];
+const themeCountdownTarget = themeConfig?.countdownTarget
+  ? new Date(
+      themeConfig.countdownTarget[0],
+      themeConfig.countdownTarget[1] - 1, // JS months are 0-indexed
+      themeConfig.countdownTarget[2],
+      themeConfig.countdownTarget[3],
+      0, 0
+    )
+  : undefined;
 
 import './styles/global.css';
 import './styles/animations.css';
@@ -89,53 +141,57 @@ function App() {
             </span>
             <h1 className="event-title">FAAJI</h1>
 
-            <Countdown />
+            <Countdown targetDate={themeCountdownTarget} />
 
             <CTAButton href={TICKET_URL}>Get Tickets</CTAButton>
           </div>
 
           <div className="hero-flyer">
-            {/* Desktop: main flyer + also-tonight strip */}
+            {/* Always: main flyer */}
             <div className="hero-flyer-main">
               <FlyerCard
-                imageSrc={flyerImage}
+                imageSrc={heroFlyer}
                 imageAlt="FAAJI Event Flyer - Every Friday Night at Bassline Chicago"
               >
                 <AudioPlayer isPlaying={isPlaying} onToggle={toggle} />
               </FlyerCard>
 
-              <div className="also-tonight">
-                <img src={kdbdFlyer} alt="Birthday Celebration Flyer" className="also-tonight-thumb" />
-                <div className="also-tonight-text">
-                  <span className="also-tonight-label">Also Tonight</span>
-                  <span className="also-tonight-title">Khayd Birthday Celebration</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile: two-flyer depth duo */}
-            <div className="flyer-duo">
-              <div className="flyer-duo-track">
-                <div
-                  className={`flyer-duo-item ${duoActive === 0 ? 'flyer-duo-item--active' : 'flyer-duo-item--peek-left'}`}
-                  onClick={() => setDuoActive(0)}
-                >
-                  <img src={flyerImage} alt="FAAJI Event Flyer" />
-                  <div className="flyer-duo-audio" onClick={e => e.stopPropagation()}>
-                    <AudioPlayer isPlaying={isPlaying} onToggle={toggle} />
+              {ACTIVE_THEME === 'default' && (
+                <div className="also-tonight">
+                  <img src={kdbdFlyer} alt="Birthday Celebration Flyer" className="also-tonight-thumb" />
+                  <div className="also-tonight-text">
+                    <span className="also-tonight-label">Also Tonight</span>
+                    <span className="also-tonight-title">Khayd Birthday Celebration</span>
                   </div>
                 </div>
-                <div
-                  className={`flyer-duo-item ${duoActive === 1 ? 'flyer-duo-item--active' : 'flyer-duo-item--peek-right'}`}
-                  onClick={() => setDuoActive(1)}
-                >
-                  <img src={kdbdFlyer} alt="Birthday Celebration Flyer" />
-                </div>
-              </div>
-              <p className="flyer-duo-label">
-                {duoActive === 0 ? 'Faaji Fridays' : 'Khayd Birthday Celebration'}
-              </p>
+              )}
             </div>
+
+            {/* Mobile: two-flyer depth duo (not shown during Ghana week) */}
+            {ACTIVE_THEME === 'default' && (
+              <div className="flyer-duo">
+                <div className="flyer-duo-track">
+                  <div
+                    className={`flyer-duo-item ${duoActive === 0 ? 'flyer-duo-item--active' : 'flyer-duo-item--peek-left'}`}
+                    onClick={() => setDuoActive(0)}
+                  >
+                    <img src={heroFlyer} alt="FAAJI Event Flyer" />
+                    <div className="flyer-duo-audio" onClick={e => e.stopPropagation()}>
+                      <AudioPlayer isPlaying={isPlaying} onToggle={toggle} />
+                    </div>
+                  </div>
+                  <div
+                    className={`flyer-duo-item ${duoActive === 1 ? 'flyer-duo-item--active' : 'flyer-duo-item--peek-right'}`}
+                    onClick={() => setDuoActive(1)}
+                  >
+                    <img src={kdbdFlyer} alt="Birthday Celebration Flyer" />
+                  </div>
+                </div>
+                <p className="flyer-duo-label">
+                  {duoActive === 0 ? 'Faaji Fridays' : 'Khayd Birthday Celebration'}
+                </p>
+              </div>
+            )}
 
             <LocationSection venue={VENUE} isMobile />
 

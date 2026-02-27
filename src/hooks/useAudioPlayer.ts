@@ -20,19 +20,6 @@ export function useAudioPlayer(options: UseAudioPlayerOptions): UseAudioPlayerRe
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const tryAutoplay = useCallback(async () => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    try {
-      await audio.play();
-      setIsPlaying(true);
-    } catch (error) {
-      console.log('Autoplay prevented, user interaction required:', error);
-      setIsPlaying(false);
-    }
-  }, []);
-
   const toggle = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -43,61 +30,57 @@ export function useAudioPlayer(options: UseAudioPlayerOptions): UseAudioPlayerRe
     } else {
       audio.play()
         .then(() => setIsPlaying(true))
-        .catch((error) => {
-          console.log('Audio playback failed:', error);
-          setIsPlaying(false);
-        });
+        .catch(() => setIsPlaying(false));
     }
   }, [isPlaying]);
 
   useEffect(() => {
-    // Create audio element
     const audio = new Audio(src);
     audio.loop = true;
     audio.volume = volume;
     audio.preload = 'auto';
     audioRef.current = audio;
 
-    // Set start time when metadata is loaded
     const handleLoadedMetadata = () => {
       audio.currentTime = startTime;
     };
-
     audio.addEventListener('loadedmetadata', handleLoadedMetadata);
 
-    // Handle autoplay
+    async function tryAutoplay() {
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch {
+        setIsPlaying(false);
+      }
+    }
+
+    let delayTimer: ReturnType<typeof setTimeout> | undefined;
+    let interactionHandler: (() => void) | undefined;
+
     if (autoPlay) {
-      // Try autoplay immediately or after a delay
-      const delayedAutoplay = setTimeout(() => {
-        tryAutoplay();
-      }, autoPlayDelay);
+      delayTimer = setTimeout(tryAutoplay, autoPlayDelay);
 
-      // Fallback: try on first user interaction
-      const startOnInteraction = () => {
-        if (!audioRef.current?.paused === false) {
-          tryAutoplay();
-        }
+      // Fallback: try on first user interaction if delayed autoplay failed
+      interactionHandler = () => {
+        if (audio.paused) tryAutoplay();
       };
-
-      document.addEventListener('click', startOnInteraction, { once: true });
-      document.addEventListener('touchstart', startOnInteraction, { once: true });
-
-      return () => {
-        audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
-        clearTimeout(delayedAutoplay);
-        document.removeEventListener('click', startOnInteraction);
-        document.removeEventListener('touchstart', startOnInteraction);
-        audio.pause();
-        audio.src = '';
-      };
+      document.addEventListener('click', interactionHandler, { once: true });
+      document.addEventListener('touchstart', interactionHandler, { once: true });
     }
 
     return () => {
       audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      clearTimeout(delayTimer);
+      if (interactionHandler) {
+        document.removeEventListener('click', interactionHandler);
+        document.removeEventListener('touchstart', interactionHandler);
+      }
       audio.pause();
       audio.src = '';
+      audioRef.current = null;
     };
-  }, [src, volume, startTime, autoPlay, autoPlayDelay, tryAutoplay]);
+  }, [src, volume, startTime, autoPlay, autoPlayDelay]);
 
   return { audioRef, isPlaying, toggle };
 }

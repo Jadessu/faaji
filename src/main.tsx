@@ -9,6 +9,8 @@ import { Tickets } from './pages/Tickets';
 import { useTheme } from './hooks/useTheme';
 
 import './styles/themes/valentines.css';
+import './styles/themes/ghana.css';
+import './styles/themes/stpatrick.css';
 
 /* Feature flags — set to false to enable */
 export const HIDE_MISSION = false;

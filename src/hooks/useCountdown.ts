@@ -8,32 +8,23 @@ interface CountdownTime {
 }
 
 interface UseCountdownOptions {
-  targetDay?: number; // 0 = Sunday, 5 = Friday
+  targetDay?: number;  // 0 = Sunday, 5 = Friday  (recurring)
   targetHour?: number; // 0-23
+  targetDate?: Date;   // fixed one-off date (overrides targetDay)
 }
 
-function getNextFriday(targetDay: number, targetHour: number): Date {
+function getNextRecurring(targetDay: number, targetHour: number): Date {
   const now = new Date();
-  const dayOfWeek = now.getDay();
-
-  // Calculate days until target day
-  let daysUntilTarget = (targetDay - dayOfWeek + 7) % 7;
-
-  // Create target date
+  const daysUntilTarget = (targetDay - now.getDay() + 7) % 7;
   const nextTarget = new Date(now);
   nextTarget.setDate(now.getDate() + daysUntilTarget);
   nextTarget.setHours(targetHour, 0, 0, 0);
-
-  // If target time has passed, move to next week
-  if (nextTarget <= now) {
-    nextTarget.setDate(nextTarget.getDate() + 7);
-  }
-
+  if (nextTarget <= now) nextTarget.setDate(nextTarget.getDate() + 7);
   return nextTarget;
 }
 
 export function useCountdown(options: UseCountdownOptions = {}): CountdownTime {
-  const { targetDay = 5, targetHour = 23 } = options; // Default: Friday at 11 PM
+  const { targetDay = 5, targetHour = 23, targetDate } = options;
 
   const [countdown, setCountdown] = useState<CountdownTime>({
     days: '00',
@@ -45,8 +36,8 @@ export function useCountdown(options: UseCountdownOptions = {}): CountdownTime {
   useEffect(() => {
     function updateCountdown() {
       const now = new Date();
-      const nextFriday = getNextFriday(targetDay, targetHour);
-      const diff = nextFriday.getTime() - now.getTime();
+      const target = targetDate ?? getNextRecurring(targetDay, targetHour);
+      const diff = Math.max(0, target.getTime() - now.getTime());
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -68,7 +59,7 @@ export function useCountdown(options: UseCountdownOptions = {}): CountdownTime {
     const interval = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(interval);
-  }, [targetDay, targetHour]);
+  }, [targetDay, targetHour, targetDate]);
 
   return countdown;
 }

@@ -1,0 +1,285 @@
+/* ══════════════════════════════════════════════════════════
+   ST. PATRICK'S DAY THEME
+   March 13 · The Luck of the Night
+   ══════════════════════════════════════════════════════════
+   Irish flag: Green #169B62 · White #FFFFFF · Orange #FF7900  */
+
+/* ── 1. Color variables — Irish palette ── */
+[data-theme="stpatrick"] {
+    --gold:       #169B62;   /* Irish green   */
+    --gold-light: #29c47d;
+    --gold-dark:  #0d6b42;
+    --blue:       #0a3d22;   /* deep green    */
+    --blue-light: #125731;
+    --blue-dark:  #051d11;
+}
+
+/* ── 2. Irish flag ribbon — fixed 5 px stripe at very top ── */
+[data-theme="stpatrick"] body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(
+        90deg,
+        #169B62 33.33%,
+        #FFFFFF 33.33% 66.66%,
+        #FF7900 66.66%
+    );
+    z-index: 99999;
+    pointer-events: none;
+}
+
+/* ── 3. Ambient glow — Irish green with orange undertone ── */
+[data-theme="stpatrick"] .ambient-glow {
+    background: radial-gradient(
+        circle,
+        rgba(22, 155, 98, 0.1)  0%,
+        rgba(255, 121, 0, 0.04) 50%,
+        transparent             70%
+    );
+}
+
+/* ── 4. FAAJI title — green to gold to orange ── */
+[data-theme="stpatrick"] .event-title {
+    background: linear-gradient(
+        135deg,
+        #169B62 0%,
+        #169B62 20%,
+        #FFD700 50%,
+        #FF7900 80%,
+        #FF7900 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Glow copy */
+[data-theme="stpatrick"] .event-title::after {
+    background: linear-gradient(
+        135deg,
+        #169B62 0%,
+        #FFD700 50%,
+        #FF7900 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── 5. St. Patrick's Day celebration badge ── */
+[data-theme="stpatrick"] .hero-info::before {
+    content: "☘  Celebrating St. Patrick's Day  ☘";
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    background: linear-gradient(
+        90deg,
+        #169B62, #FFD700, #FF7900, #FFD700, #169B62
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation:
+        stpatrick-shimmer 5s linear infinite,
+        fadeUp 0.8s ease forwards 0.1s;
+}
+
+@keyframes stpatrick-shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -100% center; }
+}
+
+/* Hide "Every Friday Night" */
+[data-theme="stpatrick"] .every-friday {
+    display: none;
+}
+
+/* ── 6. Floating shamrocks — gradient-bg layer ── */
+[data-theme="stpatrick"] .gradient-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23169B62'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23169B62'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23169B62'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23169B62' rx='3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23FF7900'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23FF7900'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23FF7900'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23FF7900' rx='3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23FFD700'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23FFD700'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23FFD700'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23FFD700' rx='3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23169B62'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23169B62'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23169B62'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23169B62' rx='3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23FF7900'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23FF7900'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23FF7900'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23FF7900' rx='3'/%3E%3C/svg%3E");
+    background-size: 22px 26px, 14px 17px, 18px 22px, 16px 19px, 20px 24px;
+    background-position: 15% 110%, 62% 115%, 80% 118%, 35% 112%, 90% 120%;
+    background-repeat: no-repeat;
+    animation: stpatrick-float 15s ease-in-out infinite;
+    opacity: 0.35;
+}
+
+@keyframes stpatrick-float {
+    0% {
+        background-position: 15% 110%, 62% 115%, 80% 118%, 35% 112%, 90% 120%;
+        opacity: 0;
+    }
+    10%  { opacity: 0.35; }
+    90%  { opacity: 0.35; }
+    100% {
+        background-position: 10% -10%, 58% -15%, 75% -8%, 30% -12%, 85% -5%;
+        opacity: 0;
+    }
+}
+
+/* ── 7. Hero — subtle shamrock watermark ── */
+[data-theme="stpatrick"] .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23169B62'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23169B62'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23169B62'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23169B62' rx='3'/%3E%3C/svg%3E");
+    background-size: 14px 17px;
+    background-repeat: repeat;
+    opacity: 0;
+    animation: stpatrick-twinkle 7s ease-in-out infinite;
+}
+
+@keyframes stpatrick-twinkle {
+    0%, 100% { opacity: 0; }
+    50%       { opacity: 0.025; }
+}
+
+/* ── 8. Splash screen — shamrocks rising on load ── */
+[data-theme="stpatrick"] .splash-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23169B62'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23169B62'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23169B62'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23169B62' rx='3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23FF7900'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23FF7900'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23FF7900'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23FF7900' rx='3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23FFD700'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23FFD700'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23FFD700'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23FFD700' rx='3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23169B62'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23169B62'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23169B62'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23169B62' rx='3'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 60'%3E%3Ccircle cx='25' cy='14' r='12' fill='%23FF7900'/%3E%3Ccircle cx='13' cy='30' r='12' fill='%23FF7900'/%3E%3Ccircle cx='37' cy='30' r='12' fill='%23FF7900'/%3E%3Crect x='22' y='38' width='6' height='18' fill='%23FF7900' rx='3'/%3E%3C/svg%3E");
+    background-size: 28px 34px, 20px 24px, 32px 38px, 22px 27px, 26px 31px;
+    background-repeat: no-repeat;
+    animation: stpatrick-rise 2.5s ease-out forwards;
+}
+
+@keyframes stpatrick-rise {
+    0% {
+        background-position: 8% 120%, 30% 130%, 55% 125%, 75% 135%, 92% 120%;
+        opacity: 0;
+    }
+    20%  { opacity: 0.45; }
+    80%  { opacity: 0.45; }
+    100% {
+        background-position: 12% 10%, 25% -5%, 50% 15%, 78% -10%, 88% 5%;
+        opacity: 0;
+    }
+}
+
+/* ── 9. Celtic-inspired stripe dividers on sections ── */
+[data-theme="stpatrick"] .location-section {
+    border-top: none;
+    position: relative;
+}
+
+[data-theme="stpatrick"] .location-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(
+        90deg,
+        #169B62 0px,  #169B62 18px,
+        #111    18px, #111    22px,
+        #FFD700 22px, #FFD700 40px,
+        #111    40px, #111    44px,
+        #FF7900 44px, #FF7900 62px,
+        #111    62px, #111    66px
+    );
+    opacity: 0.75;
+}
+
+[data-theme="stpatrick"] .upcoming-events {
+    position: relative;
+}
+
+[data-theme="stpatrick"] .upcoming-events::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(
+        90deg,
+        #FF7900 0px,  #FF7900 18px,
+        #111    18px, #111    22px,
+        #FFD700 22px, #FFD700 40px,
+        #111    40px, #111    44px,
+        #169B62 44px, #169B62 62px,
+        #111    62px, #111    66px
+    );
+    opacity: 0.75;
+}
+
+/* ── 10. Show single flyer on mobile (no duo needed) ── */
+[data-theme="stpatrick"] .hero-flyer-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+/* ── 11. Component tweaks ── */
+
+/* Flyer frame hover glow */
+[data-theme="stpatrick"] .flyer-frame:hover {
+    border-color: rgba(22, 155, 98, 0.55);
+    box-shadow:
+        0 0 80px rgba(22, 155, 98, 0.1),
+        0 0 40px rgba(255, 121, 0, 0.08);
+}
+
+/* CTA button */
+[data-theme="stpatrick"] .cta-button:hover {
+    box-shadow:
+        0 20px 60px rgba(22, 155, 98, 0.22),
+        0  0   30px rgba(255, 121, 0, 0.08);
+}
+
+/* Audio toggle */
+[data-theme="stpatrick"] .audio-toggle {
+    box-shadow: 0 4px 20px rgba(22, 155, 98, 0.2);
+}
+
+[data-theme="stpatrick"] .audio-toggle:hover {
+    box-shadow: 0 6px 30px rgba(22, 155, 98, 0.4);
+}
+
+/* Mobile nav border */
+[data-theme="stpatrick"] .mobile-nav {
+    border-top-color: rgba(22, 155, 98, 0.15);
+}
+
+/* Navbar bottom line */
+[data-theme="stpatrick"] .navbar {
+    border-bottom-color: rgba(22, 155, 98, 0.1);
+}
+
+/* Gallery thumb hover */
+[data-theme="stpatrick"] .gallery-thumb:hover {
+    border-color: rgba(22, 155, 98, 0.35);
+    box-shadow: 0 0 40px rgba(255, 121, 0, 0.08);
+}

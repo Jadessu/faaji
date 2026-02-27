@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ACTIVE_THEME } from '../config/theme';
 import ghanaFlyer from '../assets/images/Ghana.png';
 import stPatrickFlyer from '../assets/images/stpatrick.jpg';
 
@@ -8,16 +9,21 @@ interface UpcomingEvent {
   label: string;
   date: string;
   title: string;
+  theme?: string | string[]; // theme(s) during which this event should be hidden
+  /** Party date — event is hidden once 6am the following day has passed */
+  eventDate?: Date;
   ticketUrl?: string;
 }
 
-const EVENTS: UpcomingEvent[] = [
+const ALL_EVENTS: UpcomingEvent[] = [
   {
     flyer: ghanaFlyer,
     alt: 'Ghana Independence Day Party Flyer',
     label: 'Special Event',
     date: 'March 6',
     title: 'Ghana Independence Day',
+    theme: ['ghana', 'stpatrick'],
+    eventDate: new Date(2026, 2, 6), // March 6 2026
     ticketUrl: undefined,
   },
   {
@@ -26,9 +32,26 @@ const EVENTS: UpcomingEvent[] = [
     label: 'Special Event',
     date: 'March 13',
     title: "St. Patrick's Day",
+    theme: 'stpatrick',
+    eventDate: new Date(2026, 2, 13), // March 13 2026
     ticketUrl: undefined,
   },
 ];
+
+const now = new Date();
+
+// Drop events that are current (active theme) or already past (6am day after party)
+const EVENTS = ALL_EVENTS.filter(e => {
+  if (e.eventDate) {
+    const hideAfter = new Date(e.eventDate);
+    hideAfter.setDate(hideAfter.getDate() + 1);
+    hideAfter.setHours(6, 0, 0, 0); // 6am day after the party
+    if (now >= hideAfter) return false;
+  }
+  if (!e.theme) return true;
+  const themes = Array.isArray(e.theme) ? e.theme : [e.theme];
+  return !themes.includes(ACTIVE_THEME);
+});
 
 export function UpcomingEvents() {
   const [activeIndex, setActiveIndex] = useState(0);

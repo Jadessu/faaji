@@ -3,10 +3,11 @@ import { useCountdown } from '../hooks/useCountdown';
 interface CountdownProps {
   targetDay?: number;
   targetHour?: number;
+  targetDate?: Date;
 }
 
-export function Countdown({ targetDay = 5, targetHour = 23 }: CountdownProps) {
-  const { days, hours, minutes, seconds } = useCountdown({ targetDay, targetHour });
+export function Countdown({ targetDay = 5, targetHour = 23, targetDate }: CountdownProps) {
+  const { days, hours, minutes, seconds } = useCountdown({ targetDay, targetHour, targetDate });
 
   return (
     <div className="countdown">

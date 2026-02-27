@@ -1,0 +1,287 @@
+/* ══════════════════════════════════════════════════════════
+   GHANA INDEPENDENCE DAY THEME
+   March 6 · Celebrating the Black Star Nation
+   ══════════════════════════════════════════════════════════
+   Ghana flag: Red #CE1126 · Gold #FCD116 · Green #006B3F   */
+
+/* ── 1. Color variables — Ghana flag palette ── */
+[data-theme="ghana"] {
+    --gold:       #FCD116;   /* Ghana flag gold  */
+    --gold-light: #ffe348;
+    --gold-dark:  #c9a500;
+    --blue:       #004d2e;   /* deep Ghana green */
+    --blue-light: #006B3F;   /* Ghana flag green */
+    --blue-dark:  #002d1a;
+}
+
+/* ── 2. Ghana flag ribbon — fixed 5 px stripe at very top ── */
+[data-theme="ghana"] body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(
+        90deg,
+        #CE1126 33.33%,
+        #FCD116 33.33% 66.66%,
+        #006B3F 66.66%
+    );
+    z-index: 99999;
+    pointer-events: none;
+}
+
+/* ── 3. Ambient glow — warm Ghana gold centre ── */
+[data-theme="ghana"] .ambient-glow {
+    background: radial-gradient(
+        circle,
+        rgba(252, 209, 22, 0.1)  0%,
+        rgba(206, 17,  38, 0.04) 50%,
+        transparent              70%
+    );
+}
+
+/* ── 4. FAAJI title — Ghana flag gradient ── */
+[data-theme="ghana"] .event-title {
+    background: linear-gradient(
+        135deg,
+        #CE1126 0%,
+        #CE1126 18%,
+        #FCD116 44%,
+        #006B3F 72%,
+        #006B3F 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Glow copy — match the flag gradient */
+[data-theme="ghana"] .event-title::after {
+    background: linear-gradient(
+        135deg,
+        #CE1126 0%,
+        #FCD116 44%,
+        #006B3F 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── 5. Ghana Independence Day badge (above "Every Friday Night") ── */
+[data-theme="ghana"] .hero-info::before {
+    content: 'Celebrating Ghana Independence Day';
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.58rem;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    background: linear-gradient(
+        90deg,
+        #CE1126, #FCD116, #006B3F, #FCD116, #CE1126
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation:
+        ghana-shimmer 5s linear infinite,
+        fadeUp 0.8s ease forwards 0.1s;
+}
+
+@keyframes ghana-shimmer {
+    0%   { background-position: 200% center; }
+    100% { background-position: -100% center; }
+}
+
+/* Hide "Every Friday Night" — Ghana Independence Day is a one-night celebration */
+[data-theme="ghana"] .every-friday {
+    display: none;
+}
+
+/* ── 6. Floating Ghana stars — gradient-bg layer ── */
+[data-theme="ghana"] .gradient-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* five-pointed stars in red, gold, green */
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23FCD116'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23CE1126'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23006B3F'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23FCD116'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23CE1126'/%3E%3C/svg%3E");
+    background-size: 18px 18px, 12px 12px, 22px 22px, 14px 14px, 16px 16px;
+    background-position: 15% 110%, 62% 115%, 80% 118%, 35% 112%, 90% 120%;
+    background-repeat: no-repeat;
+    animation: ghana-stars-float 15s ease-in-out infinite;
+    opacity: 0.35;
+}
+
+@keyframes ghana-stars-float {
+    0% {
+        background-position: 15% 110%, 62% 115%, 80% 118%, 35% 112%, 90% 120%;
+        opacity: 0;
+    }
+    10%  { opacity: 0.35; }
+    90%  { opacity: 0.35; }
+    100% {
+        background-position: 10% -10%, 58% -15%, 75% -8%, 30% -12%, 85% -5%;
+        opacity: 0;
+    }
+}
+
+/* ── 7. Hero — subtle repeating star watermark ── */
+[data-theme="ghana"] .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23FCD116'/%3E%3C/svg%3E");
+    background-size: 10px 10px;
+    background-repeat: repeat;
+    opacity: 0;
+    animation: ghana-twinkle 7s ease-in-out infinite;
+}
+
+@keyframes ghana-twinkle {
+    0%, 100% { opacity: 0; }
+    50%       { opacity: 0.025; }
+}
+
+/* ── 8. Splash screen — Ghana stars rising on load ── */
+[data-theme="ghana"] .splash-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23FCD116'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23CE1126'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23006B3F'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23FCD116'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpolygon points='12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26' fill='%23CE1126'/%3E%3C/svg%3E");
+    background-size: 22px 22px, 15px 15px, 26px 26px, 17px 17px, 20px 20px;
+    background-repeat: no-repeat;
+    animation: ghana-stars-rise 2.5s ease-out forwards;
+}
+
+@keyframes ghana-stars-rise {
+    0% {
+        background-position: 8% 120%, 30% 130%, 55% 125%, 75% 135%, 92% 120%;
+        opacity: 0;
+    }
+    20%  { opacity: 0.45; }
+    80%  { opacity: 0.45; }
+    100% {
+        background-position: 12% 10%, 25% -5%, 50% 15%, 78% -10%, 88% 5%;
+        opacity: 0;
+    }
+}
+
+/* ── 9. Kente-inspired stripe divider on section borders ── */
+[data-theme="ghana"] .location-section {
+    border-top: none;
+    position: relative;
+}
+
+[data-theme="ghana"] .location-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(
+        90deg,
+        #CE1126 0px,  #CE1126 18px,
+        #111    18px, #111    22px,
+        #FCD116 22px, #FCD116 40px,
+        #111    40px, #111    44px,
+        #006B3F 44px, #006B3F 62px,
+        #111    62px, #111    66px
+    );
+    opacity: 0.75;
+}
+
+/* Kente stripe also above upcoming events */
+[data-theme="ghana"] .upcoming-events {
+    position: relative;
+}
+
+[data-theme="ghana"] .upcoming-events::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(
+        90deg,
+        #006B3F 0px,  #006B3F 18px,
+        #111    18px, #111    22px,
+        #FCD116 22px, #FCD116 40px,
+        #111    40px, #111    44px,
+        #CE1126 44px, #CE1126 62px,
+        #111    62px, #111    66px
+    );
+    opacity: 0.75;
+}
+
+/* ── 10. Show single flyer on mobile (no duo needed) ── */
+[data-theme="ghana"] .hero-flyer-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+}
+
+/* ── 11. Component tweaks ── */
+
+/* Flyer frame hover glow */
+[data-theme="ghana"] .flyer-frame:hover {
+    border-color: rgba(252, 209, 22, 0.55);
+    box-shadow:
+        0 0 80px rgba(252, 209, 22, 0.1),
+        0 0 40px rgba(206, 17,  38, 0.08);
+}
+
+/* CTA button hover */
+[data-theme="ghana"] .cta-button:hover {
+    box-shadow:
+        0 20px 60px rgba(252, 209, 22, 0.22),
+        0  0   30px rgba(206, 17,  38, 0.08);
+}
+
+/* Audio toggle */
+[data-theme="ghana"] .audio-toggle {
+    box-shadow: 0 4px 20px rgba(252, 209, 22, 0.2);
+}
+
+[data-theme="ghana"] .audio-toggle:hover {
+    box-shadow: 0 6px 30px rgba(252, 209, 22, 0.4);
+}
+
+/* Mobile nav border */
+[data-theme="ghana"] .mobile-nav {
+    border-top-color: rgba(252, 209, 22, 0.15);
+}
+
+/* Navbar bottom line */
+[data-theme="ghana"] .navbar {
+    border-bottom-color: rgba(252, 209, 22, 0.1);
+}
+
+/* Gallery thumb hover */
+[data-theme="ghana"] .gallery-thumb:hover {
+    border-color: rgba(252, 209, 22, 0.35);
+    box-shadow: 0 0 40px rgba(206, 17, 38, 0.08);
+}
