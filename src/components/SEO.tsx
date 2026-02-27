@@ -8,9 +8,9 @@ interface SEOProps {
 }
 
 const defaultSEO = {
-  title: 'FAAJI - Every Friday Night at Bassline Chicago',
+  title: 'FAAJI - Every Friday Night at VLive Chicago',
   description:
-    'Join us every Friday night at Bassline Chicago for FAAJI - an unforgettable night of music, vibes, and celebration. Get your tickets now!',
+    'Join us every Friday night at VLive Chicago for FAAJI - an unforgettable night of music, vibes, and celebration. Get your tickets now!',
   image: 'https://faaji.com/faajiFlyer.png',
   url: 'https://faaji.com/',
 };
@@ -20,7 +20,7 @@ const eventSchema = {
   '@type': 'Event',
   name: 'FAAJI',
   description:
-    'Every Friday night at Bassline Chicago - an unforgettable night of music, vibes, and celebration',
+    'Every Friday night at Vlive Chicago - an unforgettable night of music, vibes, and celebration',
   eventSchedule: {
     '@type': 'Schedule',
     byDay: 'Friday',

@@ -151,7 +151,7 @@ function App() {
             <div className="hero-flyer-main">
               <FlyerCard
                 imageSrc={heroFlyer}
-                imageAlt="FAAJI Event Flyer - Every Friday Night at Bassline Chicago"
+                imageAlt="FAAJI Event Flyer - Every Friday Night at VLive Chicago"
               >
                 <AudioPlayer isPlaying={isPlaying} onToggle={toggle} />
               </FlyerCard>
